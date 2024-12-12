@@ -3,7 +3,7 @@ export function ProjectItem() {
     <div className="project-block bg-white p-[18px]">
       <form className="flex-1">
         <div className="mb-[20px] flex flex-col">
-          <label for="school" className="text-[14px] mb-[10px] require">
+          <label htmlFor="school" className="text-[14px] mb-[10px] require">
             项目名称
           </label>
           <input
@@ -14,7 +14,7 @@ export function ProjectItem() {
           />
         </div>
         <div className="mb-[20px] flex flex-col">
-          <label for="school" className="text-[14px] mb-[10px] require">
+          <label htmlFor="school" className="text-[14px] mb-[10px] require">
             项目角色
           </label>
           <input
@@ -25,7 +25,7 @@ export function ProjectItem() {
           />
         </div>
         <div>
-          <label for="school" className="text-[14px] mb-[10px] require">
+          <label htmlFor="school" className="text-[14px] mb-[10px] require">
             起止时间
           </label>
           <div className="flex">
@@ -40,7 +40,7 @@ export function ProjectItem() {
           </div>
         </div>
         <div className="mb-[20px] flex flex-col">
-          <label for="school" className="text-[14px] mb-[10px] require">
+          <label htmlFor="school" className="text-[14px] mb-[10px] require">
             项目链接
           </label>
           <input
@@ -51,7 +51,7 @@ export function ProjectItem() {
           />
         </div>
         <div className="mb-[20px] flex flex-col">
-          <label for="school" className="text-[14px] mb-[10px]">
+          <label htmlFor="school" className="text-[14px] mb-[10px]">
             项目描述
           </label>
           <textarea className="common-textarea"></textarea>
