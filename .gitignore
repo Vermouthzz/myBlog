@@ -1,11 +1,16 @@
 .DS_Store
 node_modules
 /dist
+/build
 
+#next.js
+/.next/
+/out/
 
 # local env files
-.env.local
-.env.*.local
+.env*
+next-env.d.ts
+
 
 # Log files
 npm-debug.log*
@@ -25,3 +30,9 @@ study.md
 
 package-lock.json
 yarn.lock
+
+#ts
+*tsbuildinfo
+
+#vercel
+.vercel
