@@ -1,10 +1,11 @@
 'use client'
 
-import { useRef } from "react"
+import React, { useRef } from "react"
 
 export default function CreateResumePage() {
     const workDescription = useRef(null)
-  return <div className="w-[1064px] mx-auto">
+  return <React.Fragment>
+    <div className="w-[1064px] mx-auto">
   <div className="flex py-[40px] common-border-btm">
       <div className="flex flex-col w-[40%]">
           <div className="text-[20px] font-medium pb-[5px] relative">
@@ -59,7 +60,7 @@ export default function CreateResumePage() {
                   <div className="flex flex-col">
                       <label htmlFor="school" className="text-[14px] mb-[10px]">描述</label>
                       <textarea className="common-textarea" ref={}
-                          onInput="onTextareaChange"></textarea>
+                          onInput={onTextareaChange}></textarea>
                   </div>
               </form>
               <div className="flex items-center text-[#3370FF]">
@@ -149,9 +150,9 @@ export default function CreateResumePage() {
           <div className="relative">
               <label htmlFor="school" className="text-[14px]">精通程度</label>
               <div className="felx items-center py-[8px] px-[12px] common-border cursor-pointer"
-                  @click="selectLangue">
+                  onClick={selectLangue}>
                   <div v-show="!isFocus">哈哈哈哈哈哈哈</div>
-                  <input className="border-none" type="text" v-show="isFocus" ref="langueInput">
+                  <input className="border-none" type="text" v-show="isFocus" ref={langueInput} />
                   <div></div>
               </div>
               <ul className="absolute w-full p-[10px] shadow-xl bg-white h-[0px] hidden overflow-scroll ul-list"
@@ -165,14 +166,15 @@ export default function CreateResumePage() {
       <div className="flex flex-col w-[40%]">
           <div className="text-[20px] font-medium relative">
               自我评价
-              <div className="absolute w-[26px] h-[4px] bottom-[-8px]" style="background-color: #3370FF;"></div>
+              <div className="absolute w-[26px] h-[4px] bottom-[-8px] bg-[#3370FF]"></div>
           </div>
           <span className="text-[14px] text-gray-500 mt-[20px]">请填写自我评价</span>
       </div>
       <div className="flex-1 flex flex-col">
           <label htmlFor="school" className="text-[14px] mb-[10px]">自我评价</label>
-          <textarea ref="myDescription" className="common-textarea" @input="onTextareaChange"></textarea>
+          <textarea ref={myDescription} className="common-textarea" onInput={onTextareaChange}></textarea>
       </div>
   </div>
 </div>
+  </React.Fragment>
 }

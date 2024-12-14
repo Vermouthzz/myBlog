@@ -5,7 +5,8 @@ interface Props {
 }
 
 export function SelectDate({ selectClick }: Props) {
-  const [select_year, setSelectyear] = useState(-1);
+  const [select_year, setSelectYear] = useState(-1);
+  const [select_month, setSelectMonth] = useState(-1);
   return (
     <div className="shadow-sm h-[160px]">
       <ul className="py-[10px]">
