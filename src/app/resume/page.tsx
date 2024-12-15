@@ -37,7 +37,7 @@ export default function UserResumePage() {
         </div>
       </div>
 
-      <ClipItem></ClipItem>
+      {/* <ClipItem></ClipItem> */}
     </div>
   );
 }

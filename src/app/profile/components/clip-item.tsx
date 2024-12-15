@@ -11,9 +11,15 @@ export function ClipItem() {
         {/* 大图 */}
         <div className="w-[560px] h-[380px] relative flex items-center justify-center">
           <div className="bg-[#000] opacity-50 w-full h-full absolute left-0 top-0"></div>
+          <div className="w-[200px] h-[200px] cursor-move absolute opacity-50 z-[60] bg-white">
+            {/* 竖向 */}
+            <div className="absolute top-0 left-1/3 border-dashed w-1/3 h-full border-[#eee]"></div>
+            {/* 横向 */}
+            <div className="absolute border-dashed left-0 top-1/3 w-full h-1/3 border-[#eee]"></div>
+          </div>
           <img src="/image/avator.jpg" className="w-full" />
-          <div>
-            <canvas></canvas>
+          <div className="absolute">
+            <canvas id="canvas"></canvas>
           </div>
         </div>
         {/* 小图 */}

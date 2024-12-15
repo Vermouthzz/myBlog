@@ -2,13 +2,14 @@ import { useState } from "react";
 
 interface Props {
   selectClick: Function;
+  classname?: string;
 }
 
-export function SelectDate({ selectClick }: Props) {
+export function SelectDate({ selectClick, classname }: Props) {
   const [select_year, setSelectYear] = useState(-1);
   const [select_month, setSelectMonth] = useState(-1);
   return (
-    <div className="shadow-sm h-[160px]">
+    <div className={`${classname} shadow-sm h-[160px]`}>
       <ul className="py-[10px]">
         <li
           className={`hover:bg-[#f5f6f7] text-center leading-[24px] ${

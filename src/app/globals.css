@@ -3,3 +3,10 @@
 @tailwind utilities;
 
 
+.require::after {
+    content: "*";
+    width: 8px;
+    line-height: 8px;
+    margin-left: 3px;
+    color: red;
+  }
