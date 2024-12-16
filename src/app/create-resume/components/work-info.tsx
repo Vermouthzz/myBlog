@@ -2,7 +2,7 @@ import { CommonItem } from "./common-item";
 
 export function WorkInfo() {
   return (
-    <div className="py-[40px] common-border-btm">
+    <div className="py-[40px] border-b border-[#EFF1F1]">
       <div className="flex pb-[40px]">
         <div className="w-[40%] text-[20px] relative">
           工作经历

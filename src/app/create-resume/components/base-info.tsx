@@ -3,7 +3,7 @@ import { InputItem } from "./input-item";
 
 export function BaseInfo() {
   return (
-    <div className="flex">
+    <div className="flex border-b border-[#EFF1F1]">
       <CommonTitle title="基础信息" subTitle="请填写基础信息"></CommonTitle>
       <div className="flex-1 p-[10px]">
         <InputItem label="姓名"></InputItem>

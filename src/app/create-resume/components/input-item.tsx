@@ -18,7 +18,7 @@ export function InputItem({ classname, id, label, placeholder }: Props) {
         type="text"
         placeholder={placeholder}
         id={id}
-        className="border border-[#BBBFC3] rounded-[5px] p-[6px] text-[13px]"
+        className="border border-[#BBBFC3] rounded-[5px] p-[6px] text-[13px] hover:border-[#3370FF]"
       />
     </div>
   );

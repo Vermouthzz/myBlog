@@ -20,7 +20,7 @@ export function TextareaItem({ label, classname }: Props) {
       </label>
       <textarea
         ref={workDescription}
-        className="text-[#606266] border border-[#dcdfe6] rounded-[4px] bg-white leading-[1.5] px-[5px] py-[10px]"
+        className="text-[#606266] border border-[#dcdfe6] rounded-[4px] hover:border-[#3370FF] bg-white leading-[1.5] px-[5px] py-[10px]"
         onInput={onTextareaChange}
       ></textarea>
     </div>

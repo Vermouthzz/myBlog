@@ -1,6 +1,9 @@
 export function ClipItem() {
   const initCanvas = () => {
-    // const ctx =
+    const canvas: HTMLCanvasElement = document.getElementById("canvas")!;
+    const ctx = canvas.getContext("2d");
+    const img = new Image();
+    // img.src = ''
   };
   return (
     <div className="shadow-sm border-[#999] rounded-[5px] border w-[748px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50">
@@ -19,7 +22,7 @@ export function ClipItem() {
           </div>
           <img src="/image/avator.jpg" className="w-full" />
           <div className="absolute">
-            <canvas id="canvas"></canvas>
+            <canvas width="560px" height="380px" id="canvas"></canvas>
           </div>
         </div>
         {/* 小图 */}

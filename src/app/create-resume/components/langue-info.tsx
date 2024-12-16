@@ -23,7 +23,7 @@ export function LangueInfo() {
   const langueInput = useRef<HTMLInputElement>(null);
   const selectLangue = useCallback(() => {}, []);
   return (
-    <div className="flex">
+    <div className="flex border-b border-[#EFF1F1] py-[40px]">
       <CommonTitle title="语言能力" subTitle="请填写语言能力"></CommonTitle>
       <div className="p-[10px] flex-1">
         <div className="relative">
