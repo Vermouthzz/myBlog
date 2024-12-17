@@ -1,9 +1,49 @@
+import { useEffect, useRef } from "react";
+
 export function ClipItem() {
+  const moveItem = useRef<HTMLDivElement>(null);
   const initCanvas = () => {
-    const canvas: HTMLCanvasElement = document.getElementById("canvas")!;
-    const ctx = canvas.getContext("2d");
-    const img = new Image();
-    // img.src = ''
+    const canvas: HTMLCanvasElement = document.getElementById(
+      "canvas"
+    ) as HTMLCanvasElement;
+    if (canvas.getContext) {
+      const ctx = canvas.getContext("2d")!;
+      const img = new Image();
+      img.onload = function () {
+        let y = (380 - 315) / 2;
+        ctx.drawImage(img, 0, y, 580, 315);
+      };
+      img.src = "/image/avator.jpg";
+    }
+  };
+
+  const mouseup = () => {
+    // moveItem.current.
+  };
+
+  useEffect(() => {
+    initCanvas();
+    window.addEventListener("mouseup", mouseup);
+
+    return () => {
+      window.removeEventListener("mouseup", mouseup);
+    };
+  }, []);
+
+  const clickStart = (e: React.MouseEvent<HTMLSpanElement>) => {
+    console.log(e);
+    const startX = e.clientX;
+    const startY = e.clientY;
+    let startLeft = moveItem.current!.offsetLeft;
+    let startTop = moveItem.current!.offsetTop;
+    moveItem.current!.onmousemove = (e: MouseEvent) => {
+      const endX = e.clientX;
+      const endY = e.clientY;
+      let moveX = endX - startX + startLeft;
+      let moveY = endY - startY + startTop;
+      moveItem.current!.style.left = moveX + "px";
+      moveItem.current!.style.top = moveY + "px";
+    };
   };
   return (
     <div className="shadow-sm border-[#999] rounded-[5px] border w-[748px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50">
@@ -12,19 +52,42 @@ export function ClipItem() {
       </div>
       <div className="bg-white p-[22px] flex">
         {/* 大图 */}
-        <div className="w-[560px] h-[380px] relative flex items-center justify-center">
-          <div className="bg-[#000] opacity-50 w-full h-full absolute left-0 top-0"></div>
-          <div className="w-[200px] h-[200px] cursor-move absolute opacity-50 z-[60] bg-white">
-            {/* 竖向 */}
-            <div className="absolute top-0 left-1/3 border-dashed w-1/3 h-full border-[#eee]"></div>
-            {/* 横向 */}
-            <div className="absolute border-dashed left-0 top-1/3 w-full h-1/3 border-[#eee]"></div>
-          </div>
-          <img src="/image/avator.jpg" className="w-full" />
-          <div className="absolute">
-            <canvas width="560px" height="380px" id="canvas"></canvas>
+        <div className="w-[560px] h-[380px]">
+          <img src="/image/avator.jpg" style={{ display: "none" }} alt="" />
+          <div className="w-[560px] h-[380px] relative touch-none">
+            <div className="overflow-hidden absolute top-0 left-0 w-full h-full">
+              <div className="w-[560px] h-[315px] absolute top-1/2 -translate-y-1/2">
+                <img
+                  style={{ width: "560px", height: "315px", transform: "none" }}
+                  src="/image/avator.jpg"
+                />
+              </div>
+            </div>
+            {/* 遮罩层 */}
+            <div className="bg-[#000] opacity-50 w-full h-full absolute left-0 top-0"></div>
+
+            <div className="w-[200px] h-[200px] absolute">
+              <span className="w-full h-full overflow-hidden outline outline-1 block outline-[#39f] ">
+                <canvas width="560px" height="315px" id="canvas"></canvas>
+              </span>
+              {/* 竖向 */}
+              <div className="absolute top-0 left-1/3 border-l border-r border-dashed w-1/3 h-full opacity-50 border-[#eee]"></div>
+              {/* 横向 */}
+              <div className="absolute opacity-50 border-t border-b border-dashed left-0 top-1/3 w-full h-1/3 border-[#eee]"></div>
+
+              <span
+                ref={moveItem}
+                onMouseDown={clickStart}
+                className="cursor-move bg-white opacity-10 absolute left-0 top-0 w-full h-full"
+              ></span>
+              <span className="bg-[#39f] absolute w-[5px] h-full cursor-e-resize -right-[3px] top-0 opacity-10"></span>
+              <span className="bg-[#39f] absolute w-[5px] h-full -left-[3px] cursor-w-resize top-0 opacity-10"></span>
+              <span className="bg-[#39f] h-[5px] w-full cursor-n-resize -top-[3px] absolute opacity-10"></span>
+              <span className="bg-[#39f] h-[5px] w-full cursor-s-resize -bottom-[3px] absolute opacity-10"></span>
+            </div>
           </div>
         </div>
+
         {/* 小图 */}
         <div className="bg-[#ddd] w-[140px] flex flex-col pl-[16px] pt-[20px] border-l border-[rgb(85,85,85)] ml-[1px]">
           <span className="text-[#666] mb-[12px] text-[14px]">预览</span>

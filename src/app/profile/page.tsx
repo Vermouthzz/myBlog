@@ -1,3 +1,8 @@
+"use client";
+
+import { ClipItem } from "./components/clip-item";
+import { Items } from "./components/items";
+
 export default function ProfilePage() {
   return (
     <div>
@@ -19,6 +24,8 @@ export default function ProfilePage() {
           </ul>
         </div>
       </div>
+      <ClipItem></ClipItem>
+      {/* <Items></Items> */}
     </div>
   );
 }
