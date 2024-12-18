@@ -1,7 +1,11 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export function ClipItem() {
-  const moveItem = useRef<HTMLDivElement>(null);
+  const moveItem = useRef<HTMLSpanElement>(null);
+  const moveParent = useRef<HTMLDivElement>(null);
+  const isClick = useRef(false);
+  const subX = useRef(0);
+  const subY = useRef(0);
   const initCanvas = () => {
     const canvas: HTMLCanvasElement = document.getElementById(
       "canvas"
@@ -18,32 +22,41 @@ export function ClipItem() {
   };
 
   const mouseup = () => {
-    // moveItem.current.
+    isClick.current = false;
+  };
+  const moveChange = (e: MouseEvent) => {
+    if (e.target !== moveItem.current || !isClick.current) return;
+    const parent = moveItem.current!.parentElement;
+    console.dir(e.target);
+
+    const endX = e.clientX;
+    const endY = e.clientY;
+    parent!.style.left = endX + subX.current + "px";
+    parent!.style.top = endY + subY.current + "px";
+
+    // 移动canvas
   };
 
   useEffect(() => {
     initCanvas();
     window.addEventListener("mouseup", mouseup);
+    window.addEventListener("mousemove", moveChange);
 
     return () => {
       window.removeEventListener("mouseup", mouseup);
+      window.addEventListener("mousemove", moveChange);
     };
   }, []);
 
   const clickStart = (e: React.MouseEvent<HTMLSpanElement>) => {
-    console.log(e);
+    isClick.current = true;
     const startX = e.clientX;
     const startY = e.clientY;
-    let startLeft = moveItem.current!.offsetLeft;
-    let startTop = moveItem.current!.offsetTop;
-    moveItem.current!.onmousemove = (e: MouseEvent) => {
-      const endX = e.clientX;
-      const endY = e.clientY;
-      let moveX = endX - startX + startLeft;
-      let moveY = endY - startY + startTop;
-      moveItem.current!.style.left = moveX + "px";
-      moveItem.current!.style.top = moveY + "px";
-    };
+    let startLeft = moveParent.current!.offsetLeft;
+    let startTop = moveParent.current!.offsetTop;
+
+    subX.current = startLeft - startX;
+    subY.current = startTop - startY;
   };
   return (
     <div className="shadow-sm border-[#999] rounded-[5px] border w-[748px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50">
@@ -66,7 +79,7 @@ export function ClipItem() {
             {/* 遮罩层 */}
             <div className="bg-[#000] opacity-50 w-full h-full absolute left-0 top-0"></div>
 
-            <div className="w-[200px] h-[200px] absolute">
+            <div className="w-[200px] h-[200px] absolute" ref={moveParent}>
               <span className="w-full h-full overflow-hidden outline outline-1 block outline-[#39f] ">
                 <canvas width="560px" height="315px" id="canvas"></canvas>
               </span>
