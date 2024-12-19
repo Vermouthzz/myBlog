@@ -1,23 +1,35 @@
 import { useEffect, useRef, useState } from "react";
 
-export function ClipItem() {
+export function ClipItem({ imgUrl = "/image/avator.jpg" }: { imgUrl: string }) {
   const moveItem = useRef<HTMLSpanElement>(null);
   const moveParent = useRef<HTMLDivElement>(null);
+  const canvas = useRef<HTMLCanvasElement>(null);
+  const ctx = useRef<CanvasRenderingContext2D>(null);
   const isClick = useRef(false);
+  const img = useRef<HTMLImageElement>(null);
   const subX = useRef(0);
   const subY = useRef(0);
+  const init_trans_x = useRef(0);
+  const init_trans_y = useRef(0);
   const initCanvas = () => {
-    const canvas: HTMLCanvasElement = document.getElementById(
-      "canvas"
-    ) as HTMLCanvasElement;
-    if (canvas.getContext) {
-      const ctx = canvas.getContext("2d")!;
-      const img = new Image();
-      img.onload = function () {
-        let y = (380 - 315) / 2;
-        ctx.drawImage(img, 0, y, 580, 315);
+    if (canvas.current?.getContext) {
+      ctx.current = canvas.current.getContext("2d")!;
+      img.current = new Image();
+      img.current.onload = function () {
+        const naturalWidth = img.current!.naturalWidth;
+        const naturalHeight = img.current!.naturalHeight;
+        const ratio = naturalWidth / naturalHeight;
+        const imgWidth = naturalWidth >= 560 ? 560 : naturalWidth;
+        const imgHeight = imgWidth / ratio >= 380 ? 380 : imgWidth / ratio;
+        init_trans_y.current = imgHeight >= 380 ? 0 : (380 - imgHeight) / 2;
+        init_trans_x.current = imgWidth >= 560 ? 0 : (560 - imgWidth) / 2;
+
+        canvas.current!.width = imgWidth; // 设置绘图区域的宽度
+        canvas.current!.height = imgHeight; // 设置绘图区域的高度
+        canvas.current!.style.transform = `translate(${init_trans_x.current}px, ${init_trans_y.current}px)`;
+        ctx.current!.drawImage(img.current!, 0, 0, imgWidth, imgHeight);
       };
-      img.src = "/image/avator.jpg";
+      img.current.src = imgUrl;
     }
   };
 
@@ -29,13 +41,24 @@ export function ClipItem() {
     const parent = moveItem.current!.parentElement;
     console.dir(e.target);
 
-    const endX = e.clientX;
-    const endY = e.clientY;
-    parent!.style.left = endX + subX.current + "px";
-    parent!.style.top = endY + subY.current + "px";
+    let left = e.clientX + subX.current;
+    let top = e.clientY + subY.current;
+
+    if (left <= 0) left = 0;
+    if (top <= 0) top = 0;
+    if (left >= 360) left = 360;
+    if (top >= 180) top = 180;
+
+    parent!.style.left = left + "px";
+    parent!.style.top = top + "px";
 
     // 移动canvas
+    window.requestAnimationFrame(() => {
+      canvas.current!.style.top = -top + "px";
+      canvas.current!.style.left = -left + "px";
+    });
   };
+  // mm:349a709i
 
   useEffect(() => {
     initCanvas();
@@ -54,7 +77,6 @@ export function ClipItem() {
     const startY = e.clientY;
     let startLeft = moveParent.current!.offsetLeft;
     let startTop = moveParent.current!.offsetTop;
-
     subX.current = startLeft - startX;
     subY.current = startTop - startY;
   };
@@ -80,8 +102,8 @@ export function ClipItem() {
             <div className="bg-[#000] opacity-50 w-full h-full absolute left-0 top-0"></div>
 
             <div className="w-[200px] h-[200px] absolute" ref={moveParent}>
-              <span className="w-full h-full overflow-hidden outline outline-1 block outline-[#39f] ">
-                <canvas width="560px" height="315px" id="canvas"></canvas>
+              <span className="w-full h-full relative overflow-hidden outline outline-1 block outline-[#39f] ">
+                <canvas ref={canvas} className="absolute" id="canvas"></canvas>
               </span>
               {/* 竖向 */}
               <div className="absolute top-0 left-1/3 border-l border-r border-dashed w-1/3 h-full opacity-50 border-[#eee]"></div>
