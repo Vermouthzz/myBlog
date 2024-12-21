@@ -1,4 +1,4 @@
-import { ClipItem } from "../profile/components/clip-item";
+import { ClipItem } from "../profile/widgets/clip-item";
 import { UserResumeItem } from "./components/user-resume-item";
 
 const itemInfo = [

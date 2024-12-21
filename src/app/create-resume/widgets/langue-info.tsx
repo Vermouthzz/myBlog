@@ -1,6 +1,6 @@
 import { useCallback, useRef } from "react";
-import { CommonTitle } from "./common-title";
-import { SelectList } from "./select-list";
+import { CommonTitle } from "../components/common-title";
+import { SelectList } from "../components/select-list";
 
 const langueList = [
   { text: "英语", type: 1 },

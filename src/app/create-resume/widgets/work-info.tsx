@@ -1,4 +1,4 @@
-import { CommonItem } from "./common-item";
+import { CommonItem } from "../components/common-item";
 
 export function WorkInfo() {
   return (

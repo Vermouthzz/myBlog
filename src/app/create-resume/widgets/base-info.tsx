@@ -1,5 +1,5 @@
-import { CommonTitle } from "./common-title";
-import { InputItem } from "./input-item";
+import { CommonTitle } from "../components/common-title";
+import { InputItem } from "../components/input-item";
 
 export function BaseInfo() {
   return (

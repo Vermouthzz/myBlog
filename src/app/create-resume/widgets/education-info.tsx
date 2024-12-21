@@ -1,6 +1,6 @@
-import { CommonDate } from "./common-date";
-import { CommonTitle } from "./common-title";
-import { InputItem } from "./input-item";
+import { CommonDate } from "../components/common-date";
+import { CommonTitle } from "../components/common-title";
+import { InputItem } from "../components/input-item";
 
 export function EducationInfo() {
   return (

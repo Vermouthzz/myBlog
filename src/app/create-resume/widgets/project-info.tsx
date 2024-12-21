@@ -1,7 +1,7 @@
-import { CommonDate } from "./common-date";
-import { CommonTitle } from "./common-title";
-import { InputItem } from "./input-item";
-import { TextareaItem } from "./textarea-item";
+import { CommonDate } from "../components/common-date";
+import { CommonTitle } from "../components/common-title";
+import { InputItem } from "../components/input-item";
+import { TextareaItem } from "../components/textarea-item";
 import React from "react";
 
 export function ProjectItem() {

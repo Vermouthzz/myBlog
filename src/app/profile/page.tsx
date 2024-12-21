@@ -1,7 +1,6 @@
 "use client";
 
-import { ClipItem } from "./components/clip-item";
-import { Items } from "./components/items";
+import { ClipItem } from "./widgets/clip-item";
 
 export default function ProfilePage() {
   return (
@@ -25,7 +24,6 @@ export default function ProfilePage() {
         </div>
       </div>
       <ClipItem></ClipItem>
-      {/* <Items></Items> */}
     </div>
   );
 }

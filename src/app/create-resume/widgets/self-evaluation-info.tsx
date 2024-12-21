@@ -1,5 +1,5 @@
-import { CommonTitle } from "./common-title";
-import { TextareaItem } from "./textarea-item";
+import { CommonTitle } from "../components/common-title";
+import { TextareaItem } from "../components/textarea-item";
 
 export function SelfEvaluationInfo() {
   return (

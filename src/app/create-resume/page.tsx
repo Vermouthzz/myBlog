@@ -1,11 +1,11 @@
 "use client";
 
 import React, { useRef } from "react";
-import { EducationInfo } from "./components/education-info";
-import { ProjectItem } from "./components/project-info";
-import { BaseInfo } from "./components/base-info";
-import { LangueInfo } from "./components/langue-info";
-import { SelfEvaluationInfo } from "./components/self-evaluation-info";
+import { EducationInfo } from "./widgets/education-info";
+import { ProjectItem } from "./widgets/project-info";
+import { BaseInfo } from "./widgets/base-info";
+import { LangueInfo } from "./widgets/langue-info";
+import { SelfEvaluationInfo } from "./widgets/self-evaluation-info";
 
 export default function CreateResumePage() {
   return (
