@@ -1,28 +1,18 @@
 interface Props {
   className: string;
-  imgSize: string;
-  radius: string;
-  p: number | string;
   style: object;
   src: string;
 }
 
-export function ImageItem({
-  className,
-  imgSize,
-  radius,
-  p,
-  style,
-  src,
-}: Props) {
+export function ImageItem({ className, style, src }: Props) {
   return (
     <div
-      className={`${className} "bg-white relative" p-[${p}px] rounded-[${radius}px])`}
+      className={`${className} rounded-[2px] bg-white border-white overflow-hidden relative)`}
     >
       <img
-        src="/image/avator.jpg"
+        src={src}
         style={style}
-        className={`${imgSize} rounded-[${radius}px] absolute translate-[${p}px]`}
+        className={` block preview-img rounded-[2px]`}
         alt=""
       />
     </div>

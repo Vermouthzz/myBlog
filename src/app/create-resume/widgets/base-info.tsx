@@ -1,7 +1,15 @@
+import { useState } from "react";
 import { CommonTitle } from "../components/common-title";
 import { InputItem } from "../components/input-item";
 
+const initialBaseInfo = {
+  name: "",
+  phone: "",
+  email: "",
+};
+
 export function BaseInfo() {
+  const [baseInfo, setBaseInfo] = useState(initialBaseInfo);
   return (
     <div className="flex border-b border-[#EFF1F1]">
       <CommonTitle title="基础信息" subTitle="请填写基础信息"></CommonTitle>

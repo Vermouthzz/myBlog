@@ -1,8 +1,8 @@
-import { Header } from "./header";
+import { Header } from "../components/header";
 
 export function Banner() {
   return (
-    <div className="h-screen relative w-screen bg-[] bg-cover bg-center">
+    <div className="h-screen relative w-screen bg-[url('/image/main-bg.webp')] bg-cover bg-center">
       <div className="absolute w-full top-0 left-0 main-header">
         <Header></Header>
       </div>
